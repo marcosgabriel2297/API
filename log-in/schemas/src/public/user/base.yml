@@ -11,12 +11,10 @@ components:
           type: string
           example: joe_doe@gmail.com
         password:
-          description: User password.
-          type: string
-          example: $2b$12$WGI2R5P.MzTDAl6vS3s5JuaX6NgB0cqHGkozfKdkC4FsHoMHvAgQ6
+          $ref: "#/components/schemas/password"
 
-    RegisterUser:
-      description: Service to register a user.
+    AuthUser:
+      description: Service to auth a user.
       type: object
       properties:
         email:

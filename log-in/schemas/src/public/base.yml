@@ -58,10 +58,6 @@ components:
                 description: Email used by the user to register.
                 type: string
                 example: joe_doe@gmail.com
-              password:
-                description: Encripted password used by the user to register.
-                type: string
-                example: $2b$10$yTNpIEcXAJJj60DrWij6EOg6/DsoHw/DsowUS3wBW0gV3mWv0P33O
 
     SuccessLoginResponse:
       description: Succes Login!
@@ -70,15 +66,13 @@ components:
           schema:
             type: object
             properties:
-              message:
-                description: mensaje exitoso
+              _id:
+                $ref: "#/components/schemas/id"
+              email:
+                description: Email used by the user to auth.
                 type: string
-                example: success
+                example: joe_doe@gmail.com
               token:
-                description: token encriptado con los datos del logueo. Para desencriptar utilizar -> jwt.verify(response.token, process.env.KEY_PRELOGIN))
+                description: Token with encrypted user data
                 type: string
                 example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMGU1OTNlNGRlNDVjOTA1NGJmOWRhZCIsImVtYWlsIjoibWFyY29zQHZlcmEuY29tIiwibmFtZSI6Im1hcmNvcyIsImxhc3RuYW1lIjoidmVyYSIsInN0YXR1cyI6ImFjdGl2ZSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY0NTExNTc4NX0.Fw0fBmleg2hY2QGYLxlxgXi5zs8YNiz1tc1VSCSDXRM
-              code:
-                description: codigo de estado
-                type: number
-                example: 2
