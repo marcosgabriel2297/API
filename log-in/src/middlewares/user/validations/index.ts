@@ -3,9 +3,10 @@ import validateEmail from './validateEmail';
 import validatePassword from './validatePassword';
 import validateUniqueEmail from './validateUniqueEmail';
 
-const authValidations = [validateEmail, validatePassword]
-const registerValidations = runValidations([...authValidations, validateUniqueEmail]);
+const authValidationsMiddlewares = [validateEmail, validatePassword]
+const registerValidations = runValidations([...authValidationsMiddlewares, validateUniqueEmail]);
+const authValidations = runValidations(authValidationsMiddlewares);
 
-const middlewares = { registerValidations };
+const middlewares = { registerValidations, authValidations };
 
 export default middlewares;
