@@ -1,0 +1,84 @@
+openapi: 3.0.0
+info:
+  title: Challenge-Conexa
+  description: Manage User
+  version: 1.6.0
+  x-logo:
+    url: "https://conexa.ai/meta-logo.jpg"
+    altText: Digesto Municipal
+
+tags:
+  - name: User
+    description: For managing User
+
+servers:
+  - url: "--*TODAVIA NO HAY SERVER DE PROD*--"
+    description: The Prod API server
+    variables:
+      environment:
+        default: prod
+  - url: "http://digesto-api.jesusmaria.gov.ar"
+    description: The QA API server
+    variables:
+      environment:
+        default: qa
+  - url: "localhost:3000"
+    description: The Local API server
+    variables:
+      environment:
+        default: local
+
+paths: {}
+
+components:
+  schemas:
+    id:
+      description: The unique identifier of the item
+      type: string
+      readOnly: true
+      example: d555345345345as67a342a
+
+    password:
+      description: The password for the user
+      type: string
+      example: Uv13qwer67pLkj
+
+  responses:
+
+    SuccessRegisterUserResponse:
+      description: Register User.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              _id:
+                $ref: "#/components/schemas/id"
+              email:
+                description: Email used by the user to register.
+                type: string
+                example: joe_doe@gmail.com
+              password:
+                description: Encripted password used by the user to register.
+                type: string
+                example: $2b$10$yTNpIEcXAJJj60DrWij6EOg6/DsoHw/DsowUS3wBW0gV3mWv0P33O
+
+    SuccessLoginResponse:
+      description: Succes Login!
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                description: mensaje exitoso
+                type: string
+                example: success
+              token:
+                description: token encriptado con los datos del logueo. Para desencriptar utilizar -> jwt.verify(response.token, process.env.KEY_PRELOGIN))
+                type: string
+                example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMGU1OTNlNGRlNDVjOTA1NGJmOWRhZCIsImVtYWlsIjoibWFyY29zQHZlcmEuY29tIiwibmFtZSI6Im1hcmNvcyIsImxhc3RuYW1lIjoidmVyYSIsInN0YXR1cyI6ImFjdGl2ZSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY0NTExNTc4NX0.Fw0fBmleg2hY2QGYLxlxgXi5zs8YNiz1tc1VSCSDXRM
+              code:
+                description: codigo de estado
+                type: number
+                example: 2

@@ -1,0 +1,25 @@
+components:
+  schemas:
+    User:
+      description: Un usuario
+      type: object
+      properties:
+        _id:
+          $ref: "#/components/schemas/id"
+        email:
+          description: User email.
+          type: string
+          example: joe_doe@gmail.com
+        password:
+          description: User password.
+          type: string
+          example: $2b$12$WGI2R5P.MzTDAl6vS3s5JuaX6NgB0cqHGkozfKdkC4FsHoMHvAgQ6
+
+    RegisterUser:
+      description: Service to register a user.
+      type: object
+      properties:
+        email:
+          $ref: "#/components/schemas/User/properties/email"
+        password:
+          $ref: "#/components/schemas/User/properties/password"

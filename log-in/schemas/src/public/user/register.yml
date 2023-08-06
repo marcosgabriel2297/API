@@ -1,0 +1,23 @@
+paths:
+  /api/auth/register:
+    post:
+      operationId: Register user
+      tags:
+        - User
+      summary: Register user
+      security:
+        - ApiKey: []
+      requestBody:
+        description: Data to register a user
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RegisterUser"
+      responses:
+        "200":
+          $ref: "#/components/responses/SuccessRegisterUserResponse"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "500":
+          $ref: "#/components/responses/InternalError"
