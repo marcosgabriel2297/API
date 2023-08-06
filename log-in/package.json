@@ -1,0 +1,46 @@
+{
+  "name": "log-in",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node build/app.js",
+    "dev": "tsc-watch --onSuccess \"node build/app.js\"",
+    "tsc": "tsc",
+    "test": "npm run tsc && env-cmd -f ./.env.test mocha './build/test/*' --recursive --no-warnings --exit",
+    "api-schema-builder": "npx @janiscommerce/api-schema-builder",
+    "test-schema": "npx @redocly/cli preview-docs schemas/public.json",
+    "generate-html": "npx redoc-cli bundle schemas/public.json schemas/; mv redoc-static.html src/public/",
+    "doc": "npm run api-schema-builder; npm run test-schema"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@faker-js/faker": "^8.0.2",
+    "@janiscommerce/api-schema-builder": "^1.1.1",
+    "@types/bcrypt": "^5.0.0",
+    "@types/chai": "^4.3.5",
+    "@types/express": "^4.17.17",
+    "@types/faker": "^6.6.9",
+    "@types/jsonwebtoken": "^9.0.2",
+    "@types/mocha": "^10.0.1",
+    "@types/mongoose": "^5.11.97",
+    "@types/morgan": "^1.9.4",
+    "axios": "^1.4.0",
+    "chai": "^4.3.7",
+    "env-cmd": "^10.1.0",
+    "mocha": "^10.2.0",
+    "tsc-watch": "^6.0.4",
+    "typescript": "^5.1.6"
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "dotenv": "^16.3.1",
+    "express": "4.18.2",
+    "express-validator": "^7.0.1",
+    "http-status-codes": "^2.2.0",
+    "jsonwebtoken": "^9.0.1",
+    "mongoose": "^5.13.15",
+    "morgan": "^1.10.0"
+  }
+}
