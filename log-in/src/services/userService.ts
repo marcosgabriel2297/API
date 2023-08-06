@@ -16,11 +16,11 @@ const signUserWithJwt = (user: IUser) => {
 
 const authenticateEmail = async (credentials: UserInterface) => {
     const user = await findByEmail(credentials.email);
-    if (!user) return Promise.reject(USER_NOT_EXISTS);
+    if (!user) return Promise.reject({ message: USER_NOT_EXISTS });
 
     const isPasswordValid = await comparePassword(credentials.password, user.password);
     if (!isPasswordValid) {
-      return Promise.reject(PASSWORD_NOT_VALID);
+      return Promise.reject({ message: PASSWORD_NOT_VALID });
     }
 
     return signUserWithJwt(user);

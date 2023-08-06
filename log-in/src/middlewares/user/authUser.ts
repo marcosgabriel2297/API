@@ -8,7 +8,7 @@ const authUser = async (_req: Request, res: Response, next: NextFunction) => {
     res.status(StatusCodes.OK).json(user);
     return next();
   } catch (err) {
-    return next(err);
+    res.status(StatusCodes.UNPROCESSABLE_ENTITY).json(err);
   }
 };
 
