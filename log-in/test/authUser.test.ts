@@ -17,7 +17,7 @@ const {
     USER_NOT_EXISTS,
 } = ERROR_CODES;
 
-const { before } = mocha;
+const { before, after } = mocha;
 const { describe, it } = mocha;
 const { assert } = chai;
 
@@ -37,6 +37,10 @@ describe('User Controller', () => {
   before(async () => {
     await User.remove({});
     await userService.create(user);
+  });
+
+  after(async () => {
+    await User.remove({});
   });
 
   describe(`POST Auth User`, () => {
