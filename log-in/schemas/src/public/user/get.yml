@@ -1,0 +1,16 @@
+paths:
+  /api/users:
+    post:
+      operationId: Get users
+      tags:
+        - User
+      summary: Get users
+      security:
+        - ApiKey: []
+      responses:
+        "200":
+          $ref: "#/components/responses/SuccessGetUsersResponse"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "500":
+          $ref: "#/components/responses/InternalError"

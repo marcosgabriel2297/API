@@ -1,14 +1,14 @@
 paths:
-  /api/auth:
+  /api/auth/register:
     post:
-      operationId: Auth user
+      operationId: Register user
       tags:
-        - User
-      summary: Login user
+        - Auth
+      summary: Register user
       security:
         - ApiKey: []
       requestBody:
-        description: Data to login a user
+        description: Data to register a user
         required: true
         content:
           application/json:
@@ -16,7 +16,7 @@ paths:
               $ref: "#/components/schemas/AuthUser"
       responses:
         "200":
-          $ref: "#/components/responses/SuccessLoginResponse"
+          $ref: "#/components/responses/SuccessRegisterUserResponse"
         "400":
           $ref: "#/components/responses/BadRequest"
         "500":

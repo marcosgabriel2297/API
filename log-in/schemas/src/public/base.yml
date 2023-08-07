@@ -8,6 +8,8 @@ info:
     altText: Digesto Municipal
 
 tags:
+  - name: Auth
+    description: For managing Auth
   - name: User
     description: For managing User
 
@@ -44,6 +46,14 @@ components:
       example: Uv13qwer67pLkj
 
   responses:
+    SuccessGetUsersResponse:
+      description: Get Users
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: "#/components/schemas/User"
 
     SuccessRegisterUserResponse:
       description: Register User.
@@ -60,7 +70,7 @@ components:
                 example: joe_doe@gmail.com
 
     SuccessLoginResponse:
-      description: Succes Login!
+      description: Success Login!
       content:
         application/json:
           schema:
