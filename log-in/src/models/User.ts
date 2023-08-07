@@ -1,5 +1,6 @@
 import { model, Schema, Document } from 'mongoose';
 import bcrypt from 'bcrypt';
+import { Request } from 'express';
 
 export const MIN_PASSWORD_LENGTH = 8;
 
@@ -10,6 +11,12 @@ export interface UserInterface {
 
 export interface IUser extends UserInterface, Document {
   comparePassword: (password: string) => Promise<Boolean>;
+}
+
+export interface CustomRequest extends Request {
+  filter?: {
+      email?: string;
+  };
 }
 
 const userSchema = new Schema<IUser>({
