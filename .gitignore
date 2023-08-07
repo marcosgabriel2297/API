@@ -11,5 +11,5 @@
 
 /business-logic/node_modules/
 /business-logic/.env
-/business-logic/node_modules/
+/business-logic/.env.test
 /business-logic/build/
