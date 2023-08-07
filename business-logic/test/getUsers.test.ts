@@ -35,27 +35,27 @@ describe('User Controller', () => {
 
     users = await Promise.all([
       userService.create({
-        email: faker.internet.email({ firstName: 'joe' }),
+        email: faker.internet.email(),
         password: faker.internet.password()
       }),
       userService.create({
-        email: faker.internet.email({ firstName: 'joe1' }),
+        email: faker.internet.email(),
         password: faker.internet.password()
       }),
       userService.create({
-        email: faker.internet.email({ firstName: 'joe2' }),
+        email: faker.internet.email(),
         password: faker.internet.password()
       }),
       userService.create({
-        email: faker.internet.email({ firstName: 'joe3' }),
+        email: faker.internet.email(),
         password: faker.internet.password()
       }),
       userService.create({
-        email: faker.internet.email({ firstName: 'joe4' }),
+        email: faker.internet.email(),
         password: faker.internet.password()
       }),
       userService.create({
-        email: faker.internet.email({ firstName: 'joe5' }),
+        email: faker.internet.email(),
         password: faker.internet.password()
       }),
     ])
@@ -66,7 +66,6 @@ describe('User Controller', () => {
   });
 
   describe.only(`GET Auth User`, () => {
-
     it('Should return access denied', async () => {
       try {
         await instance.get(USERS_EP, buildAuthorizationHeader(`Bearer invalid token`, faker.internet.url()));
