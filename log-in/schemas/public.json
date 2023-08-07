@@ -1,0 +1,212 @@
+{
+	"openapi": "3.0.0",
+	"info": {
+		"title": "Challenge-Conexa",
+		"description": "Manage User",
+		"version": "1.6.0",
+		"x-logo": {
+			"url": "https://conexa.ai/meta-logo.jpg",
+			"altText": "Digesto Municipal"
+		}
+	},
+	"tags": [
+		{
+			"name": "User",
+			"description": "For managing User"
+		}
+	],
+	"servers": [
+		{
+			"url": "--*TODAVIA NO HAY SERVER DE PROD*--",
+			"description": "The Prod API server",
+			"variables": {
+				"environment": {
+					"default": "prod"
+				}
+			}
+		},
+		{
+			"url": "http://digesto-api.jesusmaria.gov.ar",
+			"description": "The QA API server",
+			"variables": {
+				"environment": {
+					"default": "qa"
+				}
+			}
+		},
+		{
+			"url": "localhost:3000",
+			"description": "The Local API server",
+			"variables": {
+				"environment": {
+					"default": "local"
+				}
+			}
+		}
+	],
+	"paths": {
+		"/api/auth": {
+			"post": {
+				"operationId": "Auth user",
+				"tags": [
+					"User"
+				],
+				"summary": "Login user",
+				"security": [
+					{
+						"ApiKey": []
+					}
+				],
+				"requestBody": {
+					"description": "Data to login a user",
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/AuthUser"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"$ref": "#/components/responses/SuccessLoginResponse"
+					},
+					"400": {
+						"$ref": "#/components/responses/BadRequest"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalError"
+					}
+				}
+			}
+		},
+		"/api/auth/register": {
+			"post": {
+				"operationId": "Register user",
+				"tags": [
+					"User"
+				],
+				"summary": "Register user",
+				"security": [
+					{
+						"ApiKey": []
+					}
+				],
+				"requestBody": {
+					"description": "Data to register a user",
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/AuthUser"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"$ref": "#/components/responses/SuccessRegisterUserResponse"
+					},
+					"400": {
+						"$ref": "#/components/responses/BadRequest"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalError"
+					}
+				}
+			}
+		}
+	},
+	"components": {
+		"schemas": {
+			"id": {
+				"description": "The unique identifier of the item",
+				"type": "string",
+				"readOnly": true,
+				"example": "d555345345345as67a342a"
+			},
+			"password": {
+				"description": "The password for the user",
+				"type": "string",
+				"example": "Uv13qwer67pLkj"
+			},
+			"User": {
+				"description": "Un usuario",
+				"type": "object",
+				"properties": {
+					"_id": {
+						"$ref": "#/components/schemas/id"
+					},
+					"email": {
+						"description": "User email.",
+						"type": "string",
+						"example": "joe_doe@gmail.com"
+					},
+					"password": {
+						"$ref": "#/components/schemas/password"
+					}
+				}
+			},
+			"AuthUser": {
+				"description": "Service to auth a user.",
+				"type": "object",
+				"properties": {
+					"email": {
+						"$ref": "#/components/schemas/User/properties/email"
+					},
+					"password": {
+						"$ref": "#/components/schemas/User/properties/password"
+					}
+				}
+			}
+		},
+		"responses": {
+			"SuccessRegisterUserResponse": {
+				"description": "Register User.",
+				"content": {
+					"application/json": {
+						"schema": {
+							"type": "object",
+							"properties": {
+								"_id": {
+									"$ref": "#/components/schemas/id"
+								},
+								"email": {
+									"description": "Email used by the user to register.",
+									"type": "string",
+									"example": "joe_doe@gmail.com"
+								}
+							}
+						}
+					}
+				}
+			},
+			"SuccessLoginResponse": {
+				"description": "Succes Login!",
+				"content": {
+					"application/json": {
+						"schema": {
+							"type": "object",
+							"properties": {
+								"_id": {
+									"$ref": "#/components/schemas/id"
+								},
+								"email": {
+									"description": "Email used by the user to auth.",
+									"type": "string",
+									"example": "joe_doe@gmail.com"
+								},
+								"token": {
+									"description": "Token with encrypted user data",
+									"type": "string",
+									"example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMGU1OTNlNGRlNDVjOTA1NGJmOWRhZCIsImVtYWlsIjoibWFyY29zQHZlcmEuY29tIiwibmFtZSI6Im1hcmNvcyIsImxhc3RuYW1lIjoidmVyYSIsInN0YXR1cyI6ImFjdGl2ZSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY0NTExNTc4NX0.Fw0fBmleg2hY2QGYLxlxgXi5zs8YNiz1tc1VSCSDXRM"
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

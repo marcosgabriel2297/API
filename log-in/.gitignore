@@ -1,8 +1,0 @@
-.env
-.env.test
-
-/node_modules/
-/build/
-
-redoc-static.html
-/schemas/public.json

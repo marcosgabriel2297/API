@@ -1,0 +1,15 @@
+//Log-in
+
+/log-in/.env
+/log-in/.env.test
+/log-in/node_modules/
+/log-in/build/
+/log-in/redoc-static.html
+/log-in//schemas/public.json
+
+//Business-logic
+
+/business-logic/node_modules/
+/business-logic/.env
+/business-logic/node_modules/
+/business-logic/build/
